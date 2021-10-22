@@ -28,7 +28,7 @@ class Ball(pygame.sprite.Sprite):
     self.diameter = 10
     self.velocity = [random.choice([-3,-2,2,3]),1]
     self.maxSpeed = 6
-    self.velocity_increment = -1
+    self.velocity_increment = -0.05
     
     # Load ball image and scale
     self.image = getFilledRect(self.diameter, self.diameter, 255, 255, 255)
@@ -43,6 +43,10 @@ class Ball(pygame.sprite.Sprite):
   def update(self):
     self.rect.x += self.velocity[0]
     self.rect.y += self.velocity[1]
+    if self.velocity[0] > -0.1 and self.velocity[0] < 0.1:
+      self.velocity[0] += 0.1
+  
+
   
   # Collision with paddle
   def bounceOffPaddle(self,paddle):
@@ -103,7 +107,7 @@ class Brick(pygame.sprite.Sprite):
         super().__init__()
 
         # Init brick variables
-        self.width = 60
+        self.width = 64
         self.height = 20
         self.image = getFilledRect(self.width, self.height, 255, 0, 0)
         # Fetch the rectangle object that has the dimensions of the image.
