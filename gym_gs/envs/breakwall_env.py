@@ -287,7 +287,7 @@ class BreakWallGame():
     # pix = np.rot90(pix, 3) # rotate it 90x3 ->270  
     # 100 x faster version :) 
     # get raw framebuffer and convert to numpy
-    pix = np.frombuffer(pygame.display.get_surface().get_buffer().raw, dtype=np.int8)
+    pix = np.frombuffer(pygame.display.get_surface().get_buffer().raw, dtype=np.uint8)
     # reshape to 3D array of RGBA
     pix = np.reshape(pix, [self.screen_height,self.screen_width,4])
     # this tricky bit reverses the order of the RGBA and loses the A
