@@ -90,13 +90,12 @@ class Ball(pygame.sprite.Sprite):
         self.velocity[0] = -self.velocity[0]
     if self.rect.x<=0:
         self.velocity[0] = -self.velocity[0]
-    if self.rect.y<=40:
-        self.velocity[1] = -self.velocity[1]
+    if self.rect.y<=0:
+        self.velocity[1] = abs(self.velocity[1])
   
   # Collision with ground
   def bounceOffGround(self,screen_height):
     if self.rect.y>(screen_height-self.diameter):
-      self.velocity[1] = -self.velocity[1]
       return True
       
 # Derives from the "Sprite" class in Pygame
@@ -307,7 +306,7 @@ class BreakWall(gym.Env):
   This is a simple, high level wrapper class for the breakwall game which presents it with an openai gym compatible interface as per:
   https://github.com/openai/gym/blob/master/docs/creating_environments.md
   """
-  metadata = {'render.modes': ['human']}
+  metadata = {'render_modes': ['human']}
 
   def __init__(self):
     # offscreen mode
